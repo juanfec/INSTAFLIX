@@ -1,4 +1,4 @@
-package dev.juanfe.instaflix.reps
+package dev.juanfe.instaflix.repos
 
 enum class Status {
     RUNNING,

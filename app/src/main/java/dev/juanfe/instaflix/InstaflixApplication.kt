@@ -11,8 +11,9 @@ class InstaflixApplication : Application(){
         super.onCreate()
         // Start Koin
         startKoin{
+
             androidLogger()
-            androidContext(this@InstaflixApplication)
+            androidContext(this@InstaflixApplication.applicationContext)
             modules(appModule)
         }
     }

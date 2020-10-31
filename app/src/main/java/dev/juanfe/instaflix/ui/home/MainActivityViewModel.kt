@@ -3,15 +3,15 @@ package dev.juanfe.instaflix.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
-import dev.juanfe.instaflix.data.models.Movie
-import dev.juanfe.instaflix.reps.NetworkState
+import dev.juanfe.instaflix.data.models.MovieGeneral
+import dev.juanfe.instaflix.repos.NetworkState
 import io.reactivex.disposables.CompositeDisposable
 
 class MainActivityViewModel(private val movieRepository : MoviePagedListRepository) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 
-    val  moviePagedList : LiveData<PagedList<Movie>> by lazy {
+    val  movieGeneralPagedList : LiveData<PagedList<MovieGeneral>> by lazy {
         movieRepository.fetchLiveMoviePagedList(compositeDisposable)
     }
 
@@ -20,7 +20,7 @@ class MainActivityViewModel(private val movieRepository : MoviePagedListReposito
     }
 
     fun listIsEmpty(): Boolean {
-        return moviePagedList.value?.isEmpty() ?: true
+        return movieGeneralPagedList.value?.isEmpty() ?: true
     }
 
 

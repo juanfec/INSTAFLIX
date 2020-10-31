@@ -1,18 +1,22 @@
 package dev.juanfe.instaflix.data.models
 
+import com.squareup.moshi.Json
+
 data class Movie(
-    val adult: Boolean,
-    val backdrop_path: String,
-    val genre_ids: List<Int>,
+    val budget: Int,
     val id: Int,
-    val original_language: String,
-    val original_title: String,
     val overview: String,
     val popularity: Double,
-    val poster_path: String,
-    val release_date: String,
+    @Json(name = "poster_path")
+    val posterPath: String,
+    @Json(name = "release_date")
+    val releaseDate: String,
+    val revenue: Long,
+    val runtime: Int,
+    val status: String,
+    val tagline: String,
     val title: String,
     val video: Boolean,
-    val vote_average: Double,
-    val vote_count: Int
+    @Json(name = "vote_average")
+    val rating: Double
 )

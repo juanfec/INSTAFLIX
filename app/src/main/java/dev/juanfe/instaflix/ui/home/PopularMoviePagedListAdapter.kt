@@ -10,15 +10,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dev.juanfe.instaflix.R
-import dev.juanfe.instaflix.data.models.Movie
+import dev.juanfe.instaflix.data.models.MovieGeneral
 import dev.juanfe.instaflix.data.remote.IMAGE_URL
-import dev.juanfe.instaflix.reps.NetworkState
+import dev.juanfe.instaflix.repos.NetworkState
 import dev.juanfe.instaflix.ui.movie.MovieActivity
 import kotlinx.android.synthetic.main.movie_list_item.view.*
 import kotlinx.android.synthetic.main.network_state_item.view.*
 
 
-class PopularMoviePagedListAdapter(public val context: Context) : PagedListAdapter<Movie, RecyclerView.ViewHolder>(MovieDiffCallback()) {
+class PopularMoviePagedListAdapter(public val context: Context) : PagedListAdapter<MovieGeneral, RecyclerView.ViewHolder>(MovieDiffCallback()) {
 
     val MOVIE_VIEW_TYPE = 1
     val NETWORK_VIEW_TYPE = 2
@@ -68,12 +68,12 @@ class PopularMoviePagedListAdapter(public val context: Context) : PagedListAdapt
 
 
 
-    class MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
-        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+    class MovieDiffCallback : DiffUtil.ItemCallback<MovieGeneral>() {
+        override fun areItemsTheSame(oldItem: MovieGeneral, newItem: MovieGeneral): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+        override fun areContentsTheSame(oldItem: MovieGeneral, newItem: MovieGeneral): Boolean {
             return oldItem == newItem
         }
 
@@ -82,18 +82,17 @@ class PopularMoviePagedListAdapter(public val context: Context) : PagedListAdapt
 
     class MovieItemViewHolder (view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(movie: Movie?,context: Context) {
-            itemView.cv_movie_title.text = movie?.title
-            itemView.cv_movie_release_date.text =  movie?.release_date
+        fun bind(movieGeneral: MovieGeneral?, context: Context) {
 
-            val moviePosterURL = IMAGE_URL + movie?.poster_path
+
+            val moviePosterURL = IMAGE_URL + movieGeneral?.poster_path
             Glide.with(itemView.context)
                 .load(moviePosterURL)
                 .into(itemView.cv_iv_movie_poster);
 
             itemView.setOnClickListener{
                 val intent = Intent(context, MovieActivity::class.java)
-                intent.putExtra("id", movie?.id)
+                intent.putExtra("id", movieGeneral?.id)
                 context.startActivity(intent)
             }
 

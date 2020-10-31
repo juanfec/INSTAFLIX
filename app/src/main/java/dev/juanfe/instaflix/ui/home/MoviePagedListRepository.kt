@@ -4,20 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import dev.juanfe.instaflix.data.models.Movie
+import dev.juanfe.instaflix.data.models.MovieGeneral
 import dev.juanfe.instaflix.data.remote.ApiCalls
 import dev.juanfe.instaflix.data.remote.POST_PER_PAGE
-import dev.juanfe.instaflix.reps.MovieDataSource
-import dev.juanfe.instaflix.reps.MovieDataSourceFactory
-import dev.juanfe.instaflix.reps.NetworkState
+import dev.juanfe.instaflix.repos.MovieDataSource
+import dev.juanfe.instaflix.repos.MovieDataSourceFactory
+import dev.juanfe.instaflix.repos.NetworkState
 import io.reactivex.disposables.CompositeDisposable
 
 class MoviePagedListRepository (private val apiService : ApiCalls) {
 
-    lateinit var moviePagedList: LiveData<PagedList<Movie>>
+    lateinit var movieGeneralPagedList: LiveData<PagedList<MovieGeneral>>
     lateinit var moviesDataSourceFactory: MovieDataSourceFactory
 
-    fun fetchLiveMoviePagedList (compositeDisposable: CompositeDisposable) : LiveData<PagedList<Movie>> {
+    fun fetchLiveMoviePagedList (compositeDisposable: CompositeDisposable) : LiveData<PagedList<MovieGeneral>> {
         moviesDataSourceFactory = MovieDataSourceFactory(apiService, compositeDisposable)
 
         val config = PagedList.Config.Builder()
@@ -25,9 +25,9 @@ class MoviePagedListRepository (private val apiService : ApiCalls) {
             .setPageSize(POST_PER_PAGE)
             .build()
 
-        moviePagedList = LivePagedListBuilder(moviesDataSourceFactory, config).build()
+        movieGeneralPagedList = LivePagedListBuilder(moviesDataSourceFactory, config).build()
 
-        return moviePagedList
+        return movieGeneralPagedList
     }
 
     fun getNetworkState(): LiveData<NetworkState> {

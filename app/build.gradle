@@ -40,17 +40,25 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidJunit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation "androidx.test:core:1.0.0"
+    testImplementation "org.robolectric:robolectric:4.2.1"
 
 
     // Koin for Kotlin apps
     implementation "org.koin:koin-android:$koinVersion"
+    implementation "org.koin:koin-android-viewmodel:$koinVersion"
+    testImplementation "org.koin:koin-test:$koinVersion"
     // Moshi
     implementation "com.squareup.moshi:moshi-kotlin:$versionMoshi"
     // Retrofit with Moshi Converter
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     //Rx
     implementation 'io.reactivex.rxjava2:rxjava:2.2.7'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
@@ -61,5 +69,8 @@ dependencies {
     //Recyclerview
     implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha05'
     implementation 'androidx.cardview:cardview:1.0.0'
+    //login interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:4.2.1"
+    implementation "com.squareup.okhttp3:okhttp:4.2.1"
 
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">INSTAFLIX</string>
+    <string name="connection_problem">Connection Problem!!</string>
 </resources>

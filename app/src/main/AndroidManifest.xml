@@ -3,7 +3,7 @@
     package="dev.juanfe.instaflix">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".InstaflixApplication"
@@ -13,14 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.INSTAFLIX">
-        <activity android:name=".ui.movie.MovieActivity"></activity>
-        <activity android:name=".ui.home.MainActivity">
+        <activity android:name=".ui.serie.SerieActivity"></activity>
+        <activity android:name=".ui.movie.MovieActivity" />
+        <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.home.MainActivity"></activity>
     </application>
 
 </manifest>

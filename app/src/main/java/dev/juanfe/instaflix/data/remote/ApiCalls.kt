@@ -3,7 +3,9 @@ package dev.juanfe.instaflix.data.remote
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dev.juanfe.instaflix.data.models.Movie
+import dev.juanfe.instaflix.data.models.Serie
 import dev.juanfe.instaflix.data.remote.responses.MovieResponse
+import dev.juanfe.instaflix.data.remote.responses.SerieResponse
 import io.reactivex.Single
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -28,6 +30,12 @@ interface ApiCalls {
 
     @GET("movie/{movie_id}")
     fun getMovieDetails(@Path("movie_id") id: Int): Single<Movie>
+
+    @GET("tv/popular")
+    fun getSeries(@Query("page") page: Int) : Single<SerieResponse>
+
+    @GET("tv/{tv_id}")
+    fun getSerieDetails(@Path("tv_id") id: Int): Single<Serie>
 
     companion object{
         operator fun invoke(

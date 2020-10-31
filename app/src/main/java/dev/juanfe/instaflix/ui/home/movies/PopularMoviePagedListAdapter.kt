@@ -1,7 +1,8 @@
-package dev.juanfe.instaflix.ui.home
+package dev.juanfe.instaflix.ui.home.movies
 
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +19,9 @@ import kotlinx.android.synthetic.main.movie_list_item.view.*
 import kotlinx.android.synthetic.main.network_state_item.view.*
 
 
-class PopularMoviePagedListAdapter(public val context: Context) : PagedListAdapter<MovieGeneral, RecyclerView.ViewHolder>(MovieDiffCallback()) {
+class PopularMoviePagedListAdapter( val context: Context) : PagedListAdapter<MovieGeneral, RecyclerView.ViewHolder>(
+    MovieDiffCallback()
+) {
 
     val MOVIE_VIEW_TYPE = 1
     val NETWORK_VIEW_TYPE = 2
@@ -32,10 +35,14 @@ class PopularMoviePagedListAdapter(public val context: Context) : PagedListAdapt
 
         if (viewType == MOVIE_VIEW_TYPE) {
             view = layoutInflater.inflate(R.layout.movie_list_item, parent, false)
-            return MovieItemViewHolder(view)
+            return MovieItemViewHolder(
+                view
+            )
         } else {
             view = layoutInflater.inflate(R.layout.network_state_item, parent, false)
-            return NetworkStateItemViewHolder(view)
+            return NetworkStateItemViewHolder(
+                view
+            )
         }
     }
 
@@ -92,6 +99,7 @@ class PopularMoviePagedListAdapter(public val context: Context) : PagedListAdapt
 
             itemView.setOnClickListener{
                 val intent = Intent(context, MovieActivity::class.java)
+                intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
                 intent.putExtra("id", movieGeneral?.id)
                 context.startActivity(intent)
             }
@@ -100,7 +108,7 @@ class PopularMoviePagedListAdapter(public val context: Context) : PagedListAdapt
 
     }
 
-    class NetworkStateItemViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+    open class NetworkStateItemViewHolder (view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(networkState: NetworkState?) {
             if (networkState != null && networkState == NetworkState.LOADING) {

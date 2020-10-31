@@ -1,4 +1,4 @@
-package dev.juanfe.instaflix.ui.home
+package dev.juanfe.instaflix.ui.home.movies
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations

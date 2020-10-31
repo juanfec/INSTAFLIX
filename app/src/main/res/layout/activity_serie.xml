@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EE000000"
-    tools:context=".ui.movie.MovieActivity">
+    tools:context=".ui.serie.SerieActivity">
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/iv_movie_poster"
+                android:id="@+id/iv_serie_poster"
                 android:layout_width="216dp"
                 android:layout_height="359dp"
                 android:layout_gravity="center"
@@ -33,18 +33,18 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/movie_title"
+                android:id="@+id/serie_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="movie"
+                android:text="serie"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_movie_poster" />
+                app:layout_constraintTop_toBottomOf="@+id/iv_serie_poster" />
 
             <TextView
                 android:id="@+id/textView"
@@ -56,14 +56,14 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/movie_release_date"
+                app:layout_constraintEnd_toStartOf="@+id/serie_release_date"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/movie_title" />
+                app:layout_constraintTop_toBottomOf="@+id/serie_title" />
 
             <TextView
-                android:id="@+id/movie_release_date"
+                android:id="@+id/serie_release_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -74,7 +74,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/movie_title" />
+                app:layout_constraintTop_toBottomOf="@+id/serie_title" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -90,13 +90,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <TextView
-                android:id="@+id/movie_rating"
+                android:id="@+id/serie_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="8"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/movie_release_date"
+                app:layout_constraintStart_toStartOf="@+id/serie_release_date"
                 app:layout_constraintTop_toTopOf="@+id/textView2" />
 
             <TextView
@@ -113,7 +113,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <TextView
-                android:id="@+id/movie_overview"
+                android:id="@+id/serie_overview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -145,14 +145,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ProgressBar
-            android:id="@+id/progress_bar"
+            android:id="@+id/progress_bar_serie"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/txt_error"
+            android:id="@+id/txt_error_serie"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"

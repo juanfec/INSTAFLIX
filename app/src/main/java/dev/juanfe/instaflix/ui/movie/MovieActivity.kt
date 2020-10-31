@@ -1,5 +1,6 @@
 package dev.juanfe.instaflix.ui.movie
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -40,16 +41,9 @@ class MovieActivity : AppCompatActivity() {
 
     fun bindUI( it: Movie){
         movie_title.text = it.title
-        movie_tagline.text = it.tagline
         movie_release_date.text = it.releaseDate
         movie_rating.text = it.rating.toString()
-        movie_runtime.text = it.runtime.toString() + " minutes"
         movie_overview.text = it.overview
-
-        val formatCurrency = NumberFormat.getCurrencyInstance(Locale.US)
-        movie_budget.text = formatCurrency.format(it.budget)
-        movie_revenue.text = formatCurrency.format(it.revenue)
-
         val moviePosterURL = IMAGE_URL + it.posterPath
         Glide.with(this)
             .load(moviePosterURL)

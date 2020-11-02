@@ -9,11 +9,37 @@
         android:id="@+id/navigation_movies"
         android:name="dev.juanfe.instaflix.ui.home.movies.MoviesFragment"
         android:label="@string/movies"
-        tools:layout="@layout/fragment_movies" />
+        tools:layout="@layout/fragment_movies" >
+
+        <action
+            android:id="@+id/action_navigation_movies_to_movieFragment"
+            app:destination="@id/movieFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_seriess"
         android:name="dev.juanfe.instaflix.ui.home.series.SeriesFragment"
         android:label="@string/series"
-        tools:layout="@layout/fragment_series" />
+        tools:layout="@layout/fragment_series" >
+        <action
+            android:id="@+id/action_navigation_seriess_to_serieActivity"
+            app:destination="@id/serieActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieFragment"
+        android:name="dev.juanfe.instaflix.ui.movie.MovieFragment"
+        android:label="activity_movie"
+        tools:layout="@layout/activity_movie" >
+        <argument android:name="movieId"
+            app:argType="integer"/>
+    </fragment>
+    <fragment
+        android:id="@+id/serieActivity"
+        android:name="dev.juanfe.instaflix.ui.serie.SerieFragment"
+        android:label="activity_serie"
+        tools:layout="@layout/activity_serie" >
+        <argument
+            android:name="serieId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

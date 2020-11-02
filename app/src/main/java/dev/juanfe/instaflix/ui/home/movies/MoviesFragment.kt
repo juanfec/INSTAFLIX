@@ -1,5 +1,6 @@
 package dev.juanfe.instaflix.ui.home.movies
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import dev.juanfe.instaflix.R
 import dev.juanfe.instaflix.repos.NetworkState
+import dev.juanfe.instaflix.util.waitForTransition
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -30,7 +32,13 @@ class MoviesFragment : Fragment() {
             PopularMoviePagedListAdapter(
                 requireActivity().applicationContext
             )
-        gridLayoutManager = GridLayoutManager(context, 3)
+        gridLayoutManager = if (requireActivity().resources
+                .configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+        ) {
+            GridLayoutManager(context, 3)
+        } else {
+            GridLayoutManager(context, 5)
+        }
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 val viewType = movieAdapter.getItemViewType(position)
@@ -43,10 +51,17 @@ class MoviesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rv_movie_list.layoutManager = gridLayoutManager
-        rv_movie_list.setHasFixedSize(true)
-        rv_movie_list.adapter = movieAdapter
-
+        rv_movie_list.apply {
+            this.adapter = movieAdapter
+            postponeEnterTransition()
+            viewTreeObserver.addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
+            setHasFixedSize(true)
+            this.layoutManager = gridLayoutManager
+        }
+        waitForTransition(rv_movie_list)
         myViewModel.movieGeneralPagedList.observe(requireActivity(), Observer {
             movieAdapter.submitList(it)
         })

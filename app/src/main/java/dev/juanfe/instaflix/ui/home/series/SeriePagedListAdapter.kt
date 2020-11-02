@@ -1,25 +1,21 @@
 package dev.juanfe.instaflix.ui.home.series
 
 import android.content.Context
-import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dev.juanfe.instaflix.R
-import dev.juanfe.instaflix.data.models.MovieGeneral
 import dev.juanfe.instaflix.data.models.SerieGeneral
 import dev.juanfe.instaflix.data.remote.IMAGE_URL
 import dev.juanfe.instaflix.repos.NetworkState
 import dev.juanfe.instaflix.ui.home.movies.PopularMoviePagedListAdapter
-import dev.juanfe.instaflix.ui.movie.MovieActivity
-import dev.juanfe.instaflix.ui.serie.SerieActivity
 import kotlinx.android.synthetic.main.movie_list_item.view.*
-import kotlinx.android.synthetic.main.network_state_item.view.*
 
 
 class SeriePagedListAdapter(val context: Context) :PagedListAdapter<SerieGeneral, RecyclerView.ViewHolder>(
@@ -91,18 +87,31 @@ class SeriePagedListAdapter(val context: Context) :PagedListAdapter<SerieGeneral
     class SerieItemViewHolder (view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(serieGeneral: SerieGeneral?, context: Context) {
-
+            val serieId = serieGeneral?.id!!
 
             val moviePosterURL = IMAGE_URL + serieGeneral?.poster_path
-            Glide.with(itemView.context)
-                .load(moviePosterURL)
-                .into(itemView.cv_iv_movie_poster);
+            itemView.cv_iv_movie_poster.apply {
+                transitionName = serieId.toString()
+                Glide.with(itemView.context)
+                    .load(moviePosterURL)
+                    .into(this);
+            }
+
 
             itemView.setOnClickListener{
+                val directions = SeriesFragmentDirections.actionNavigationSeriessToSerieActivity(serieId)
+                val extras = FragmentNavigatorExtras(
+                    itemView.cv_iv_movie_poster to serieId.toString())
+                itemView.findNavController().navigate(directions,extras)
+                /*
                 val intent = Intent(context, SerieActivity::class.java)
+                itemView.cv_iv_movie_poster.setTransitionName("posterMovie")
+                val options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((context as Activity?)!!, itemView.cv_iv_movie_poster,itemView.cv_iv_movie_poster.transitionName)
+                Log.e("Animation", "Success")
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.putExtra("id", serieGeneral?.id)
-                context.startActivity(intent)
+                context.startActivity(intent,options.toBundle())
+                */
             }
 
         }

@@ -12,4 +12,5 @@
     <color name="item_selected">#ffffff</color>
     <color name="item_unselected">#50ffffff</color>
     <color name="navigation_background">#171717</color>
+    <color name="transparent">#00000000</color>
 </resources>

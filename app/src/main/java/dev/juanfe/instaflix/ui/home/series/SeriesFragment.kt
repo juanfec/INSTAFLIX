@@ -1,15 +1,16 @@
 package dev.juanfe.instaflix.ui.home.series
 
+import android.content.res.Configuration
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import dev.juanfe.instaflix.R
 import dev.juanfe.instaflix.repos.NetworkState
-import kotlinx.android.synthetic.main.fragment_movies.*
+import dev.juanfe.instaflix.util.waitForTransition
 import kotlinx.android.synthetic.main.fragment_series.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -30,7 +31,13 @@ class SeriesFragment : Fragment() {
             SeriePagedListAdapter(
                 requireActivity().applicationContext
             )
-        gridLayoutManager = GridLayoutManager(context, 3)
+        if (requireActivity().resources
+                .configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+        ) {
+            gridLayoutManager = GridLayoutManager(context, 3)
+        } else {
+            gridLayoutManager = GridLayoutManager(context, 5)
+        }
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 val viewType = serieAdapter.getItemViewType(position)
@@ -46,10 +53,17 @@ class SeriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rv_serie_list.layoutManager = gridLayoutManager
-        rv_serie_list.setHasFixedSize(true)
-        rv_serie_list.adapter = serieAdapter
-
+        rv_serie_list.apply {
+            layoutManager = gridLayoutManager
+            setHasFixedSize(true)
+            postponeEnterTransition()
+            viewTreeObserver.addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
+            adapter = serieAdapter
+        }
+        waitForTransition(rv_serie_list)
         myViewModel.serieGeneralPagedList.observe(requireActivity(), Observer {
             serieAdapter.submitList(it)
         })

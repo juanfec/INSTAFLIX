@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EE000000"
-    tools:context=".ui.serie.SerieActivity">
+    tools:context=".ui.serie.SerieFragment">
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -37,7 +37,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="serie"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="24sp"

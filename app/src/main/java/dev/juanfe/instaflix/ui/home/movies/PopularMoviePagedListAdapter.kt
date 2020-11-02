@@ -1,11 +1,19 @@
 package dev.juanfe.instaflix.ui.home.movies
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.os.bundleOf
+import androidx.core.view.ViewCompat
+import androidx.navigation.NavOptions
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +22,7 @@ import dev.juanfe.instaflix.R
 import dev.juanfe.instaflix.data.models.MovieGeneral
 import dev.juanfe.instaflix.data.remote.IMAGE_URL
 import dev.juanfe.instaflix.repos.NetworkState
-import dev.juanfe.instaflix.ui.movie.MovieActivity
+import dev.juanfe.instaflix.ui.movie.MovieFragment
 import kotlinx.android.synthetic.main.movie_list_item.view.*
 import kotlinx.android.synthetic.main.network_state_item.view.*
 
@@ -90,18 +98,30 @@ class PopularMoviePagedListAdapter( val context: Context) : PagedListAdapter<Mov
     class MovieItemViewHolder (view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(movieGeneral: MovieGeneral?, context: Context) {
-
-
+            var videoId = movieGeneral?.id!!
             val moviePosterURL = IMAGE_URL + movieGeneral?.poster_path
-            Glide.with(itemView.context)
-                .load(moviePosterURL)
-                .into(itemView.cv_iv_movie_poster);
+            itemView.cv_iv_movie_poster.apply {
+                transitionName = videoId.toString()
+                Glide.with(itemView.context)
+                    .load(moviePosterURL)
+                    .into(this);
+            }
 
             itemView.setOnClickListener{
-                val intent = Intent(context, MovieActivity::class.java)
+                val directions = MoviesFragmentDirections.actionNavigationMoviesToMovieFragment(videoId)
+                val extras = FragmentNavigatorExtras(
+                        itemView.cv_iv_movie_poster to videoId.toString())
+                itemView.findNavController().navigate(directions,extras)
+                /*
+                val intent = Intent(context, MovieFragment::class.java)
+                itemView.cv_iv_movie_poster.setTransitionName("posterMovie")
+                val options: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(context as (Activity), itemView.cv_iv_movie_poster,itemView.cv_iv_movie_poster.transitionName)
+                Log.e("Animation", "Success")
                 intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
                 intent.putExtra("id", movieGeneral?.id)
-                context.startActivity(intent)
+                context.startActivity(intent,options.toBundle())
+
+                 */
             }
 
         }

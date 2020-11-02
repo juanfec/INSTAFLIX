@@ -13,8 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.INSTAFLIX">
-        <activity android:name=".ui.serie.SerieActivity"></activity>
-        <activity android:name=".ui.movie.MovieActivity" />
+        <activity android:name=".ui.serie.SerieFragment"></activity>
+        <activity android:name=".ui.movie.MovieFragment" />
         <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

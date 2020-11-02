@@ -20,7 +20,7 @@ Project is created with:
 
 ## Flow
 The application has a home activity with a BottomNavigationView with two options, Movies and Series
-![Image of Nav](https://drive.google.com/file/d/1K0-JSJInqYJf9QBOAbtv1s6mCuGmkTGz/view)
+![Image of Nav](https://drive.google.com/uc?export=view&id=1K0-JSJInqYJf9QBOAbtv1s6mCuGmkTGz)
 This is the home view
 ![Image of Home](https://drive.google.com/file/d/1UIHDNnKsK6TDD0YH3W63W2fehx4TbYBf/view)
 And this is the detail view of a Series or a Movies

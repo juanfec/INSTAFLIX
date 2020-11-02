@@ -47,27 +47,7 @@ class MoviesViewModelTest {
         assertNotNull(viewModel?.movieGeneralPagedList)
         viewModel?.movieGeneralPagedList?.hasObservers()?.let { assertTrue(it) }
     }
-    /*
-    @Test
-    fun testApiFetchDataSuccess() {
-        // Mock API response
-        `when`(apiClient.fetchNews()).thenReturn(Single.just(NewsList()))
-        viewModel.fetchNews()
-        verify(observer).onChanged(NewsListViewState.LOADING_STATE)
-        verify(observer).onChanged(NewsListViewState.SUCCESS_STATE)
-    }
-
-    @Test
-    fun testApiFetchDataError() {
-        `when`(apiClient.fetchNews())
-            .thenReturn(Single.error(Throwable("Api error")))
-        viewModel.fetchNews()
-        verify(observer).onChanged(NewsListViewState.LOADING_STATE)
-        verify(observer).onChanged(NewsListViewState.ERROR_STATE)
-    }
-
-     */
-
+    
     @After
     @Throws(Exception::class)
     fun tearDown() {

@@ -38,4 +38,5 @@ ext {
     espressoVersion = '3.2.0'
     retrofitVersion = '2.9.0'
     versionMoshi = "1.9.3"
+    okHttpVersion = "4.2.1"
 }

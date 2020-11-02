@@ -6,7 +6,7 @@ data class Movie(
     val id: Int,
     val overview: String,
     @Json(name = "poster_path")
-    val posterPath: String,
+    val posterPath: String?,
     @Json(name = "release_date")
     val releaseDate: String,
     val title: String,

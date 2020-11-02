@@ -20,11 +20,11 @@ Project is created with:
 
 ## Flow
 The application has a home activity with a BottomNavigationView with two options, Movies and Series
-![Image of Nav](https://drive.google.com/file/d/1K0-JSJInqYJf9QBOAbtv1s6mCuGmkTGz/view?usp=sharing)
+![Image of Nav](https://drive.google.com/file/d/1K0-JSJInqYJf9QBOAbtv1s6mCuGmkTGz/view)
 This is the home view
-![Image of Home](https://drive.google.com/file/d/1UIHDNnKsK6TDD0YH3W63W2fehx4TbYBf/view?usp=sharing)
+![Image of Home](https://drive.google.com/file/d/1UIHDNnKsK6TDD0YH3W63W2fehx4TbYBf/view)
 And this is the detail view of a Series or a Movies
-![Image of Detail](https://drive.google.com/file/d/1yXQE9bQqlIqHbe0kSgF6yiGl8EWQGPsk/view?usp=sharing)
+![Image of Detail](https://drive.google.com/file/d/1yXQE9bQqlIqHbe0kSgF6yiGl8EWQGPsk/view)
 
 ## Improvements
 This app can implement a persistence framework like Room
